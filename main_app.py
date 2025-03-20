@@ -135,10 +135,14 @@ if uploaded_file is not None:
         excel_file = process_html_file(uploaded_file)
 
         st.success("Plik został przetworzony. Możesz teraz pobrać raport.")
+        
+        # Отримуємо назву завантаженого файлу без розширення
+        original_filename = os.path.splitext(uploaded_file.name)[0]
+        excel_filename = f"{original_filename}.xlsx"
 
         st.download_button(
             label="Pobierz plik Excel",
             data=excel_file,
-            file_name="collisions_report.xlsx",
+            file_name="excel_filename",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
